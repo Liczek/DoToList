@@ -14,6 +14,7 @@
 		C86537711E030F83007EADAE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C865376F1E030F83007EADAE /* LaunchScreen.storyboard */; };
 		C86537791E031024007EADAE /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86537781E031024007EADAE /* ChecklistViewController.swift */; };
 		C865377B1E031048007EADAE /* ChecklistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865377A1E031048007EADAE /* ChecklistItem.swift */; };
+		C865377D1E03252C007EADAE /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C865377C1E03252C007EADAE /* AddItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		C86537721E030F83007EADAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C86537781E031024007EADAE /* ChecklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		C865377A1E031048007EADAE /* ChecklistItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistItem.swift; sourceTree = "<group>"; };
+		C865377C1E03252C007EADAE /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				C86537681E030F83007EADAE /* ViewController.swift */,
 				C865376A1E030F83007EADAE /* Main.storyboard */,
 				C86537781E031024007EADAE /* ChecklistViewController.swift */,
+				C865377C1E03252C007EADAE /* AddItemViewController.swift */,
 				C865377A1E031048007EADAE /* ChecklistItem.swift */,
 				C865376D1E030F83007EADAE /* Assets.xcassets */,
 				C865376F1E030F83007EADAE /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C865377D1E03252C007EADAE /* AddItemViewController.swift in Sources */,
 				C86537691E030F83007EADAE /* ViewController.swift in Sources */,
 				C86537791E031024007EADAE /* ChecklistViewController.swift in Sources */,
 				C86537671E030F83007EADAE /* AppDelegate.swift in Sources */,
@@ -308,6 +312,7 @@
 				C86537771E030F83007EADAE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
