@@ -14,6 +14,17 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     
     var dataModel: DataModel!
     
+//    func documentDirection() -> URL {
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        return paths[0]
+//    }
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        print(documentDirection())
+//    }
+//    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
     }
