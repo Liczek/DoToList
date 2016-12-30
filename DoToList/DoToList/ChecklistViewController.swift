@@ -13,7 +13,6 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     var checklist: Checklist!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,7 +30,6 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         let item = checklist.items[indexPath.row]
         configureTextLabel(for: cell, with: item)
         configureCheckmark(for: cell, with: item)
-        
         return cell
     }
     
@@ -60,14 +58,19 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     }
     
     func configureCheckmark(for cell: UITableViewCell, with item: ChecklistItem) {
-        let label = cell.viewWithTag(1001) as! UILabel
+        let label = cell.viewWithTag(1000) as! UILabel
+        
+        let attributeString = NSMutableAttributedString(string: label.text!)
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+        
+        let removeAttributeString = NSMutableAttributedString(string: label.text!)
+            removeAttributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 0, range: NSMakeRange(0, attributeString.length))
         
         if item.checked {
-            
-            label.text = "✓"
-            label.textColor = .green
-        } else {
-            label.text = "✓"
+            label.textColor = .black
+            label.attributedText = removeAttributeString
+        } else  {
+            label.attributedText = attributeString
             label.textColor = .lightGray
         }
     }
@@ -91,6 +94,8 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         if let index = checklist.items.index(of: item) {
             let indexPath = IndexPath(row: index, section: 0)
             if let cell = tableView.cellForRow(at: indexPath){
+            let label = cell.viewWithTag(1000) as! UILabel
+                label.textColor = .black
             configureTextLabel(for: cell, with: item)
             }
             dismiss(animated: true, completion: nil)
