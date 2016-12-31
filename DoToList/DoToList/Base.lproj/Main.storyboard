@@ -170,7 +170,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="done" destination="gpN-CC-HnD" eventType="editingDidEndOnExit" id="7ZP-Rm-PqP"/>
+                                                        <action selector="doneFew" destination="gpN-CC-HnD" eventType="editingDidEndOnExit" id="UeM-73-sYi"/>
                                                         <outlet property="delegate" destination="gpN-CC-HnD" id="roY-Mi-dbg"/>
                                                     </connections>
                                                 </textField>

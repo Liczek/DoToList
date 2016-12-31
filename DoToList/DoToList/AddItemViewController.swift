@@ -12,6 +12,7 @@ import UIKit
 protocol AddItemViewControllerDelegate: class {
     func addItemViewControllerCancel(_ controller: AddItemViewController)
     func addItemViewController(_ controller: AddItemViewController, didFinishAdding item: ChecklistItem)
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingFew item: ChecklistItem)
     func addItemViewController(_ controller: AddItemViewController, didFinishEditing item: ChecklistItem)
 }
 
@@ -38,7 +39,7 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         
         textField.becomeFirstResponder()
         textField.placeholder = "Enter new item name here"
-        textField.returnKeyType = .done
+        textField.returnKeyType = .continue
         textField.enablesReturnKeyAutomatically = true
         textField.autocapitalizationType = .sentences
         
@@ -65,8 +66,17 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
             item.name = textField.text!
             delegate?.addItemViewController(self, didFinishAdding: item)
         }
-        
     }
+    
+    @IBAction func doneFew() {
+        let item = ChecklistItem()
+        item.name = textField.text!
+        delegate?.addItemViewController(self, didFinishAddingFew: item)
+        textField.text = ""
+        doneBarButton.isEnabled = false
+        textField.becomeFirstResponder()        
+        }
+    
     
     @IBAction func cancel() {
         delegate?.addItemViewControllerCancel(self)

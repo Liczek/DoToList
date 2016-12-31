@@ -61,7 +61,7 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
         let label = cell.viewWithTag(1000) as! UILabel
         
         let attributeString = NSMutableAttributedString(string: label.text!)
-        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 2, range: NSMakeRange(0, attributeString.length))
+        attributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 1, range: NSMakeRange(0, attributeString.length))
         
         let removeAttributeString = NSMutableAttributedString(string: label.text!)
             removeAttributeString.addAttribute(NSStrikethroughStyleAttributeName, value: 0, range: NSMakeRange(0, attributeString.length))
@@ -100,6 +100,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             }
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    func addItemViewController(_ controller: AddItemViewController, didFinishAddingFew item: ChecklistItem) {
+        let newItemIndex = checklist.items.count
+        checklist.items.append(item)
+        let indexPath = IndexPath(row: newItemIndex, section: 0)
+        let indexPaths = [indexPath]
+        tableView.insertRows(at: indexPaths, with: .automatic)
     }
     
 //MARK: Segues
