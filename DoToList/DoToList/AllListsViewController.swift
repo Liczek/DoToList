@@ -9,21 +9,26 @@
 import Foundation
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, ChecklistViewControllerDelegate {
   
     
     var dataModel: DataModel!
-    
+    var numberOfItmes: Int?
 //    func documentDirection() -> URL {
 //        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
 //        return paths[0]
 //    }
 //
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        print(documentDirection())
-//    }
-//    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel.lists.count
@@ -32,7 +37,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = makeCell(for: tableView)
         let checklist = dataModel.lists[indexPath.row]
-        cell.textLabel!.text = "(\(dataModel.lists.count)) \(checklist.name)"
+        cell.textLabel!.text = "(\(checklist.items.count)) \(checklist.name)"
         cell.accessoryType = .detailDisclosureButton
         return cell
     }
@@ -55,6 +60,8 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         if segue.identifier == "ShowLists" {
             let controller = segue.destination as! ChecklistViewController
             controller.checklist = sender as! Checklist
+            controller.delegate = self
+            
         } else if segue.identifier == "AddList" {
             let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.topViewController as! ListDetailViewController
@@ -86,6 +93,12 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
         dismiss(animated: true, completion: nil)
     }
+    
+    func checklistViewController(_ controller: ChecklistViewController, didFinishCounting numberOfItemsInChecklist: Int) {
+        self.numberOfItmes = numberOfItemsInChecklist
+    }
+    
+    
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         let navigationController = storyboard?.instantiateViewController(withIdentifier: "ListDetailVC") as! UINavigationController

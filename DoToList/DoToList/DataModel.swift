@@ -12,7 +12,6 @@ class DataModel {
     
     var lists = [Checklist]()
     
-    
     init() {
         loadChecklists()
     }

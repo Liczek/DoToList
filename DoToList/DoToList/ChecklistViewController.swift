@@ -9,18 +9,28 @@
 import Foundation
 import UIKit
 
+protocol ChecklistViewControllerDelegate: class {
+    func checklistViewController(_ controller: ChecklistViewController, didFinishCounting numberOfItemsInChecklist: Int)
+}
+
 class ChecklistViewController: UITableViewController, AddItemViewControllerDelegate {
     
     var checklist: Checklist!
     
+    weak var delegate: ChecklistViewControllerDelegate?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let numberOfChecklists = checklist.items.count
+        let numberOfItemsInChecklist = checklist.items.count
+        delegate?.checklistViewController(self, didFinishCounting: numberOfItemsInChecklist)
         
-        title = "\(checklist.name) (\(numberOfChecklists))"
-        
+        title = "\(checklist.name) (\(checklist.items.count))"
     }
 
 //MARK: TableView Methods
@@ -78,6 +88,10 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
             label.textColor = .lightGray
         }
     }
+    
+//MARK: Number Of Items Delegate
+    
+    
     
 //MARK: Delegates
     
