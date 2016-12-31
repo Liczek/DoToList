@@ -13,10 +13,14 @@ class ChecklistViewController: UITableViewController, AddItemViewControllerDeleg
     
     var checklist: Checklist!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = checklist.name
+        let numberOfChecklists = checklist.items.count
+        
+        title = "\(checklist.name) (\(numberOfChecklists))"
+        
     }
 
 //MARK: TableView Methods

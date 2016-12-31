@@ -32,7 +32,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        let cell = makeCell(for: tableView)
         let checklist = dataModel.lists[indexPath.row]
-        cell.textLabel!.text = checklist.name
+        cell.textLabel!.text = "(\(dataModel.lists.count)) \(checklist.name)"
         cell.accessoryType = .detailDisclosureButton
         return cell
     }
