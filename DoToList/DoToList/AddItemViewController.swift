@@ -29,27 +29,28 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
         
         if let item = itemToEdit {
         title = "Edit Item"
+        textField.returnKeyType = .done
         textField.text! = item.name
+        } else {
+        textField.returnKeyType = .continue
         }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        doneBarButton.isEnabled = false
-        
+        doneBarButton.isEnabled = false        
         textField.becomeFirstResponder()
         textField.placeholder = "Enter new item name here"
-        textField.returnKeyType = .continue
         textField.enablesReturnKeyAutomatically = true
         textField.autocapitalizationType = .sentences
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let oldText = textField.text! as NSString
         let newText = oldText.replacingCharacters(in: range, with: string) as NSString
+// ??????????? jak zrobić że nowy text musi być inny niż stary?
+        doneBarButton.isEnabled = (newText.length > 0  && newText != oldText)
         
-        doneBarButton.isEnabled = newText.length > 0
         return true
     }
     
@@ -69,13 +70,18 @@ class AddItemViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func doneFew() {
+        if let item = itemToEdit {
+            item.name = textField.text!
+            delegate?.addItemViewController(self, didFinishEditing: item)
+        } else {
         let item = ChecklistItem()
         item.name = textField.text!
         delegate?.addItemViewController(self, didFinishAddingFew: item)
         textField.text = ""
         doneBarButton.isEnabled = false
-        textField.becomeFirstResponder()        
+        textField.becomeFirstResponder()
         }
+    }
     
     
     @IBAction func cancel() {

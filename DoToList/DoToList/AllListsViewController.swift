@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, ChecklistViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
   
     
     var dataModel: DataModel!
@@ -60,7 +60,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         if segue.identifier == "ShowLists" {
             let controller = segue.destination as! ChecklistViewController
             controller.checklist = sender as! Checklist
-            controller.delegate = self
+            
             
         } else if segue.identifier == "AddList" {
             let navigationController = segue.destination as! UINavigationController
